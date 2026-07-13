@@ -1,0 +1,222 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageCn.master.cs" Inherits="MasterPageCn" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>第四届绿色计算、智能与可再生能源国际会议（GCIRE 2026）</title>
+    <meta name="keywords" content="GCIRE 2026, 绿色计算国际会议, 智能系统国际会议, 可再生能源国际会议, 乌鲁木齐学术会议, 新疆学术会议, 中国学术会议" />
+    <meta name="description" content="GCIRE 2026 将汇聚绿色计算、智能系统与可再生能源领域的专家学者、工程技术人员与科研人员，共同交流最新研究成果与发展趋势。大会诚邀海内外高校、科研机构和业界人士参会交流，投稿论文经审稿及注册后将收录至国际会议论文集并提交检索。" />
+    <link rel="icon" type="image/x-icon" href="images/logo_0.jpg"/>
+    <link href="res/layui/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+        .layui-fluid {
+            padding:0px;
+        }
+    </style>
+    <link href="res/css/common.css?version=3.9.14.1" rel="stylesheet" />
+    <style>
+        .layui-mp-nav li {
+            margin:25px 0px 25px 0px;
+            padding-left:0px;
+        }
+    </style>
+    <link href="res/css/dropdown.css?version=3.9.14.1" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder id="cphHead" runat="server"></asp:ContentPlaceHolder>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0a44d3484c731d739d86c370e499c45b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <script src="res/layui/layui.js"></script>
+    
+    <script>
+        layui.config({
+            base: 'res/js/modules/'
+            , version: '3.11.29.1'
+        }).use('main', function () {
+            var laytpl = layui.laytpl
+            , dropdown = layui.dropdown
+            , $ = layui.$;
+
+            layui.sessionData('ICIA', {
+                key: 'menuData'
+                , value: [{
+                    title: 'Home'
+                    , href: 'DefaultCn.aspx'
+                    , id: 'DefaultCn'
+                }, {
+                    title: 'Committee'
+                    , href: 'Committee.aspx'
+                    , id: 'Committee'
+                }, {
+                    title: 'Keynote'
+                    , href: 'KeynoteSpeakers.aspx'
+                    , id: 'KeynoteSpeakers'
+                }, {
+                    title: 'Contributing'
+                    , id: 'Contributing'
+                    , href: 'javascript:void(0);'
+                    , child: [{
+                        title: "Call for Paper"
+                        , href: 'CallforPapers.aspx'
+                    }, {
+                        title: "Call for Workshop"
+                        , href: 'CallforWorkshop.aspx'
+                    }]
+                }, {
+                    title: 'History'
+                    , href: 'History.aspx'
+                    , id: 'History'
+                }, {
+                    title: 'Program'
+                    , id: 'Program'
+                    , href: 'javascript:void(0);'
+                    , child: [{
+                        title: "Agenda"
+                        , href: 'Agenda.aspx'
+                    }, {
+                        title: "Venue"
+                        , href: 'Venue.aspx'
+                    }]
+                }, {
+                    title: 'Author Guides'
+                    , id: 'AuthorGuides'
+                    , href: 'javascript:void(0);'
+                    , child: [{
+                        title: "Submission"
+                        , href: 'Submission.aspx'
+                    }, {
+                        title: "Publication"
+                        , href: 'Publication.aspx'
+                    }, {
+                        title: "Registration"
+                        , href: 'Registration.aspx'
+                    }]
+                }, {
+                    title: 'FAQ'
+                    , href: 'FAQ.aspx'
+                    , id: 'FAQ'
+                }, {
+                    title: 'Contact'
+                    , href: 'ContactUs.aspx'
+                    , id: 'ContactUs'
+                }, {
+                    title: 'Organizations'
+                    , href: 'Organizations.aspx'
+                    , id: 'Organizations'
+                }]
+            });
+
+            $(function () {
+                var width = $(window).width();
+                //加载导航菜单
+                var left = $("#layui-mp-top-tpl").html();
+                laytpl(left).render({ "width": width }, function (html) {
+                    $("#layui-mp-nav").html(html);
+                    if (width <= 1200) {
+                        dropdown.render({
+                            elem: '.layui-mp-menu-dropdown'
+                            , data: layui.sessionData('ICIA').menuData
+                        });
+                    }
+                });
+
+                var pname = window.location.pathname;
+                var lkNav = null;
+                if (pname.length > 6) {
+                    var last = pname.lastIndexOf('/');
+                    lkNav = "lk" + pname.slice(last + 1, -5);
+                    if (lkNav == "lkCallforPapers" || lkNav == "lkCallforWorkshop" || lkNav == "lkAcceptedworkshops") {
+                        lkNav = "lkContributing";
+                    }
+                    if (lkNav == "lkSubmission" || lkNav == "lkPublication" || lkNav == "lkRegistration" || lkNav == "lkDownload") {
+                        lkNav = "lkAuthorGuides";
+                    }
+                    if (lkNav == "lkAgenda" || lkNav == "lkVenue") {
+                        lkNav = "lkProgram";
+                    }
+                } else {
+                    lkNav = "lkDefaultCn";
+                }
+                $("#" + lkNav).css("color", "#FFFF00");
+
+                if (lkNav != "lkDefaultCn") {
+                    $(".layui-mp-header").css("background", "url(../../images/banner_0.jpg) no-repeat").css("background-size", "100% 100%");
+                }
+
+                var bodyH = $(".layui-better").height();
+                var winH = $(window).height();
+                //var footH = $(".layui-mp-footer").height();
+                if (bodyH < winH) {
+                    $(".layui-better").css("height", winH + "px");
+                    $(".layui-mp-footer").css("position", "absolute").css("bottom", "0px");
+                }
+            });
+        });
+    </script>
+
+    <!--左侧菜单-->
+    <script id="layui-mp-top-tpl" type="text/html">
+        <div class="layui-mp-menu" {{ d.width >= 1240 ? "style=width:1240px;" : "" }}>
+            <img src="images/LOGO_GCIRE.png" alt="GCIRE 2026" />
+            {{# if (d.width > 1240) { }}
+            <ul class="layui-mp-nav">
+                {{# layui.each(layui.sessionData('ICIA').menuData, function(index, item){ }}
+                <li {{ item.child ? "class=dropdown" : "" }}>
+                    <a id="lk{{ item.id }}" href="{{ item.href }}">{{ item.title }}</a>
+                    {{# if ( item.child ) { }}
+                        <ul class="dropdown-content">
+                        {{# layui.each(item.child, function(index2, item2){ }}
+                            <li><a href="{{ item2.href }}">{{ item2.title }}</a></li>
+                        {{# }); }}
+                            
+                        </ul>
+                    {{# } }}
+                </li>
+                
+                {{# }); }}
+                <li><a href="Default.aspx" class="layui-mp-lang">English</a></li>
+            </ul>
+            {{# } else { }}
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary layui-mp-menu-dropdown">
+                <i class="layui-icon layui-icon-shrink-right"></i>
+            </button>
+            <a href="Default.aspx" class="layui-mp-lang" style="float:right; height:40px; line-height:40px; margin:20px 20px 20px 0px; color:#000;">English</a>
+            {{# } }}
+            <div class="layui-clear"></div>
+        </div>
+    </script>
+    
+    <div class="layui-fluid">
+        <div class="layui-better">
+            <div class="layui-mp-header">
+                <div class="layui-mp-mark">
+                    <div id="layui-mp-nav">
+                        <!--顶部菜单-->
+                    </div>
+
+                    <asp:ContentPlaceHolder id="cphBanner" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder id="cphBody" runat="server"></asp:ContentPlaceHolder>
+            <div class="layui-clear"></div>
+
+            <div class="layui-mp-footer">
+                Copyright &copy; The 4th International Conference on Green Computing, Intelligent and Renewable Energies (GCIRE 2026)
+            </div>
+        </div>
+    </div>
+</body>
+</html>

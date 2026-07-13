@@ -1,0 +1,90 @@
+﻿#layui-mp-banner-bg {
+    position:absolute;
+    z-index:-1;
+}
+.layui-mp-banner-container {
+    background:url(../../images/ICIEIS.png) no-repeat;
+    background-size:100% auto;
+    background-position:center top;
+    height:100%;
+    position:relative;
+}
+.layui-mp-banner-container a {
+    width:240px;
+    display:block;
+    margin:0px auto;
+    text-align:center;
+}
+
+.icieis {
+    text-align:center; 
+    line-height:30px; 
+    padding:10px 0px; 
+    border-bottom:1px solid #BFBFBF; 
+    font-size:16px; 
+    font-weight:bold; 
+    color:#2C3E50;
+}
+
+.layui-mp-title {
+    text-align:center;
+}
+
+.layui-mp-keynote {
+    text-align:center;
+    height:480px;
+}
+.layui-mp-keynote > p {
+    text-align:center;
+}
+.layui-mp-keynote > img {
+    width:160px;
+    margin-bottom:10px;
+}
+
+.layui-mp-sponsor {
+    text-align:center;
+}
+.layui-mp-sponsor img {
+    height:50px;
+    max-width:100%;
+    display:block;
+    margin:0px auto;
+    margin-bottom:10px;
+}
+
+.layui-mp-download {
+    margin:0px auto;
+    width:1000px;
+    max-width:100%;
+}
+.layui-mp-download-item {
+    text-align:center;
+    float:left;
+    width:20%;
+    margin-bottom:10px;
+}
+.layui-mp-download-item > img {
+    width:70px;
+    margin-bottom:10px;
+}
+        
+@media (max-width: 1200px) {
+    .layui-mp-banner-bg {
+        background-size: auto 100%;
+        background-position: center;
+    }
+}
+/*@media (max-width: 820px) {
+}
+        
+@media (min-width: 375px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 820px) {
+}
+@media (min-width: 1000px) {
+}
+@media (min-width: 1600px) {
+}*/

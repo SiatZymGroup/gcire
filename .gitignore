@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+obj/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+
+# Publish files
+*.pubxml.user
+*.Publish.xml
+website.publishproj.user
+
+# Logs / cache
+*.log
+*.cache
+*.tmp
+
+# Sensitive local config
+Web.Debug.config
+Web.Release.config
+
+# Database / local data
+App_Data/*.mdf
+App_Data/*.ldf
+App_Data/*.sqlite
+App_Data/*.db
